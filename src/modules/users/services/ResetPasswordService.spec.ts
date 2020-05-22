@@ -6,7 +6,6 @@ import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensReposi
 import ResetPasswordService from './ResetPasswordService';
 
 let fakesUsersRepository: FakeUsersRepository;
-let fakeMailProvider: FakeMailProvider;
 let fakeHashProvider: FakeHashProvider;
 let fakeUserTokensRepository: FakeUserTokensRepository;
 let resetPasswordService: ResetPasswordService;
@@ -14,7 +13,6 @@ let resetPasswordService: ResetPasswordService;
 describe('ResetPasswordService', () => {
   beforeEach(() => {
     fakesUsersRepository = new FakeUsersRepository();
-    fakeMailProvider = new FakeMailProvider();
     fakeHashProvider = new FakeHashProvider();
     fakeUserTokensRepository = new FakeUserTokensRepository();
 
