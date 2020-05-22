@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 import uploadConfig from '@config/upload';
 
@@ -14,7 +15,17 @@ const upload = multer(uploadConfig);
 // SoC: Separation of Concerns
 // Rota: Receber a requisição, chamar outro arquivo, devolver uma resposta
 
-usersRouter.post('/', UserController.store);
+usersRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  UserController.store,
+);
 
 usersRouter.patch(
   '/avatar',
