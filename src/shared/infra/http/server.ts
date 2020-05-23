@@ -11,10 +11,12 @@ import AppError from '@shared/errors/AppError';
 import '@shared/infra/typeorm';
 import '@shared/container';
 
+import rateLimiter from './middlewares/rateLimiter';
 import routes from './routes';
 
 const app = express();
 
+app.use(rateLimiter);
 app.use(express.json());
 app.use(cors());
 app.use('/files', express.static(UploadConfig.uploadsFolder));
@@ -28,7 +30,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
       .status(err.statusCode)
       .json({ status: 'error', message: err.message });
   }
-  console.log(err);
+
   return response
     .status(500)
     .json({ status: 'error', message: 'Internal Server Error' });
