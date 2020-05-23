@@ -10,7 +10,7 @@ import UserController from '../controllers/UserController';
 import UserAvatarController from '../controllers/UserAvatarController';
 
 const usersRouter = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 
 // SoC: Separation of Concerns
 // Rota: Receber a requisição, chamar outro arquivo, devolver uma resposta
